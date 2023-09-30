@@ -1,0 +1,53 @@
+#game {
+  width: 1200px;
+  height: 200px;
+  border: 1px solid black;
+  position: relative;
+  overflow: hidden;
+}
+
+.dinosaur {
+  width: 20px;
+  height: 40px;
+  background-color: indianred;
+  position: absolute;
+  bottom: 0;
+}
+/* define animation */
+/* use DOM to add this animation */
+.jump {
+  animation: jump 1s ease infinite;
+}
+@keyframes jump {
+  0% {
+    bottom: 0px;
+  }
+  10% {
+    bottom: 100px;
+  }
+  90% {
+    bottom: 100px;
+  }
+  100% {
+    bottom: 0px;
+  }
+}
+
+.cactus {
+  width: 20px;
+  height: 20px;
+  background-color: blueviolet;
+  position: absolute;
+  bottom: 0;
+  left: 1000px;
+  /* 不断出现障碍物-infinite */
+  animation: barrier 3s linear infinite;
+}
+@keyframes barrier {
+  0% {
+    left: 1000px;
+  }
+  100% {
+    left: -20px;
+  }
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="game">
+      <div class="dinosaur"></div>
+      <div class="cactus"></div>
+    </div>
+    <script>
+      var lock = true
+
+      const game = document.getElementById('game') //use 'getElementById' to get the only DOM, instead of 'getElementsByClassName'
+      const dinosaur = document.querySelector('.dinosaur') //use 'querySelector' to get 'element', instead of using 'getElementsByClassName' to get 'DOM'
+      const cactus = document.querySelector('.cactus')
+
+      window.addEventListener('keydown', (event) => {
+        if (!lock) {
+          return
+        }
+        lock = false
+
+        if (event.code == 'Space') {
+          // console.log('jump')
+          dinosaur.classList.add('jump') //use '.classList.add' to add 'className'
+
+          setTimeout(() => {
+            dinosaur.classList.remove('jump')
+          }, 500) //use '.classList.remove' to remove 'className'
+        }
+
+        setTimeout(() => {
+          lock = true
+        }, 500)
+      })
+
+      setInterval(() => {
+        const dinosaurBottom = parseFloat(
+          getComputedStyle(dinosaur).getPropertyValue('bottom')
+        )
+        const cactusLeft = parseFloat(
+          getComputedStyle(cactus).getPropertyValue('left')
+        )
+        // console.log(dinosaurBottom)
+        // console.log(cactusLeft)
+        if (cactusLeft > -20 && cactusLeft < 20 && dinosaurBottom < 20) {
+          // console.log('game over')
+          // game.style.background = 'black'
+          game.innerHTML = '<h1>game over</h1>'
+          // game.innerHTML = '<button>try again</button>'
+        }
+      }, 10)
+    </script>
+  </body>
+</html>
